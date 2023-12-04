@@ -14,22 +14,6 @@ public class Article {
 	private Utilisateur utilisateurAcheteur;
 	private Utilisateur utilisateurVendeur;
 	private Categorie categorie;
+	private Retrait retrait = null;
 	
-	
-	
-	
-	
-	/*
-
-  `prix_initial` int DEFAULT NULL,
-  `prix_vente` int DEFAULT NULL,
-  `no_utilisateur` int NOT NULL,
-  `no_categorie` int NOT NULL,
-  
-  KEY `FK_articles_vendus_categories` (`no_categorie`),
-  KEY `FK_articles_vendus_utilisateurs_2` (`no_utilisateur`),
-  CONSTRAINT `FK_articles_vendus_categories` FOREIGN KEY (`no_categorie`) REFERENCES `categories` (`no_categorie`),
-  CONSTRAINT `FK_articles_vendus_utilisateurs` FOREIGN KEY (`no_utilisateur`) REFERENCES `utilisateurs` (`no_utilisateur`),
-  CONSTRAINT `FK_articles_vendus_utilisateurs_2` FOREIGN KEY (`no_utilisateur`) REFERENCES `utilisateurs` (`no_utilisateur`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;*/
 }
