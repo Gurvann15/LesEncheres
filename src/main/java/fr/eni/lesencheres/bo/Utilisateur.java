@@ -48,20 +48,18 @@ public class Utilisateur {
 		this.password = password;
 		this.credit = credit;
 		this.administrateur = administrateur;
-		this.listeArticleAchat = new ArrayList();
-		this.listeArticleVente = new ArrayList();
-		this.listeEnchere = new ArrayList();
+		this.listeArticleAchat = new ArrayList<>();
+		this.listeArticleVente = new ArrayList<>();
+		this.listeEnchere = new ArrayList<>();
 	}
 
 	// Constructeur avec tous les paramètres sauf crédit initialisé à 0
+	// Dans le constructeur avec crédit initialisé à 0
 	public Utilisateur(int numUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
-			String rue, String codePostal, String ville, String password, boolean administrateur) {
-		this(numUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, password, 0,
-				administrateur);
-		this.listeArticleAchat = new ArrayList();
-		this.listeArticleVente = new ArrayList();
-		this.listeEnchere = new ArrayList();
+	        String rue, String codePostal, String ville, String password, boolean administrateur) {
+	    this(numUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, password, 0, administrateur);
 	}
+
 
 	// GETTERS
 	public int getNumUtilisateur() {
@@ -110,6 +108,15 @@ public class Utilisateur {
 
 	public boolean isAdministrateur() {
 		return administrateur;
+	}
+	public List<Article> getListeArticleAchat() {
+		return listeArticleAchat;
+	}
+	public List<Article> getListeArticleVente() {
+		return listeArticleVente;
+	}
+	public List<Enchere> getListeEnchere() {
+		return listeEnchere;
 	}
 
 	// SETTERS
@@ -160,14 +167,25 @@ public class Utilisateur {
 	public void setAdministrateur(boolean administrateur) {
 		this.administrateur = administrateur;
 	}
-
+	public void setListeArticleAchat(List<Article> listeArticleAchat) {
+		this.listeArticleAchat = listeArticleAchat;
+	}
+	public void setListeArticleVente(List<Article> listeArticleVente) {
+		this.listeArticleVente = listeArticleVente;
+	}
+	public void setListeEnchere(List<Enchere> listeEnchere) {
+		this.listeEnchere = listeEnchere;
+	}
 	// METHODES
 	@Override
 	public String toString() {
 		return "Utilisateur [numUtilisateur=" + numUtilisateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom="
 				+ prenom + ", email=" + email + ", telephone=" + telephone + ", rue=" + rue + ", codePostal="
 				+ codePostal + ", ville=" + ville + ", password=" + password + ", credit=" + credit
-				+ ", administrateur=" + administrateur + "]";
+				+ ", administrateur=" + administrateur + ", listeArticleAchat=" + listeArticleAchat
+				+ ", listeArticleVente=" + listeArticleVente + ", listeEnchere=" + listeEnchere + "]";
 	}
+	
+	
 
 }
