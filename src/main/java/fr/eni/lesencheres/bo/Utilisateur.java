@@ -1,5 +1,8 @@
 package fr.eni.lesencheres.bo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 // table couplée en BDD : Utilisateur
 public class Utilisateur {
 
@@ -16,12 +19,18 @@ public class Utilisateur {
 	private String password; // motDePasse / TO DO: vérifier pas + 30 caractères en DLL
 	private int credit; // credit
 	private boolean administrateur; // administrateur
+	private List<Article> listeArticleAchat;
+	private List<Article> listeArticleVente;
+	private List<Enchere> listeEnchere;
 
 	// CONSTRUCTEURS
 	
 	// Constructeur par défaut 
 	public Utilisateur () {
 		this.credit = 0;
+		this.listeArticleAchat = new ArrayList();
+		this.listeArticleVente = new ArrayList();
+		this.listeEnchere = new ArrayList();
 	}
 	// Constructeur avec tous les paramètres
 	public Utilisateur(int numUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
@@ -39,6 +48,9 @@ public class Utilisateur {
 		this.password = password;
 		this.credit = credit;
 		this.administrateur = administrateur;
+		this.listeArticleAchat = new ArrayList();
+		this.listeArticleVente = new ArrayList();
+		this.listeEnchere = new ArrayList();
 	}
 
 	// Constructeur avec tous les paramètres sauf crédit initialisé à 0
@@ -46,6 +58,9 @@ public class Utilisateur {
 			String rue, String codePostal, String ville, String password, boolean administrateur) {
 		this(numUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, password, 0,
 				administrateur);
+		this.listeArticleAchat = new ArrayList();
+		this.listeArticleVente = new ArrayList();
+		this.listeEnchere = new ArrayList();
 	}
 
 	// GETTERS
