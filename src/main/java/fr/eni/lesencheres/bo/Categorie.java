@@ -1,5 +1,6 @@
 package fr.eni.lesencheres.bo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 // Liée à la BDD avec la table : categorie
@@ -13,15 +14,20 @@ public class Categorie {
 	//CONSTRUCTEURS
 	//Constructeur par défault
 	public Categorie() {
-		
+		this.listeArticleCategorie = new ArrayList<>();
 	}
 
+	//Constructeur avec uniquement libelle de renseigné
+	public Categorie(String libelle) {
+		this.libelle=libelle;
+		this.listeArticleCategorie = new ArrayList<>();
+	}
 	//Constructeur complet
 	public Categorie(int numCategorie, String libelle, List<Article> listeArticleCategorie) {
 		super();
 		this.numCategorie = numCategorie;
 		this.libelle = libelle;
-		this.listeArticleCategorie = listeArticleCategorie;
+		this.listeArticleCategorie = new ArrayList<>();
 	}
 
 	
