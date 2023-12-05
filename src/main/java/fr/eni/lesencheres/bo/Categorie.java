@@ -22,6 +22,13 @@ public class Categorie {
 		this.libelle=libelle;
 		this.listeArticleCategorie = new ArrayList<>();
 	}
+	
+	// Constructeur avec numéroCatégorie et libelle
+		public Categorie(int numCategorie,String libelle) {
+			this(libelle);
+			this.numCategorie = numCategorie;
+			this.listeArticleCategorie = new ArrayList<>();
+		}
 	//Constructeur complet
 	public Categorie(int numCategorie, String libelle, List<Article> listeArticleCategorie) {
 		super();
