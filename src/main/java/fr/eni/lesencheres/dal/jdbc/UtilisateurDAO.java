@@ -1,31 +1,32 @@
-package fr.eni.lesencheres.dal;
+package fr.eni.lesencheres.dal.jdbc;
 
 import java.util.List;
 
-import fr.eni.lesencheres.bo.Categorie;
+import fr.eni.lesencheres.bo.Utilisateur;
+import fr.eni.lesencheres.dal.GenericDAO;
 
-public class CategorieDAO implements GenericDAO<Categorie> {
+public class UtilisateurDAO implements GenericDAO<Utilisateur>{
 
 	@Override
-	public Categorie getById(int id) {
+	public Utilisateur getById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Categorie> getAll() {
+	public List<Utilisateur> getAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void create(Categorie entity) {
+	public void create(Utilisateur entity) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void update(Categorie entity) {
+	public void update(Utilisateur entity) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -35,5 +36,7 @@ public class CategorieDAO implements GenericDAO<Categorie> {
 		// TODO Auto-generated method stub
 		
 	}
+
+
 
 }

@@ -5,6 +5,11 @@ import fr.eni.lesencheres.bo.Categorie;
 import fr.eni.lesencheres.bo.Enchere;
 import fr.eni.lesencheres.bo.Retrait;
 import fr.eni.lesencheres.bo.Utilisateur;
+import fr.eni.lesencheres.dal.jdbc.ArticleDAO;
+import fr.eni.lesencheres.dal.jdbc.CategorieDAO;
+import fr.eni.lesencheres.dal.jdbc.EnchereDAO;
+import fr.eni.lesencheres.dal.jdbc.RetraitDAO;
+import fr.eni.lesencheres.dal.jdbc.UtilisateurDAO;
 
 public class DAOFactory {
 	
