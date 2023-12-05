@@ -15,5 +15,5 @@ public class Article {
 	private Utilisateur utilisateurVendeur;
 	private Categorie categorie;
 	private Retrait retrait = null;
-	
+	//comentaire
 }
