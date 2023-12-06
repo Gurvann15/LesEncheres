@@ -16,6 +16,7 @@ public class Settings {
 			throw new RuntimeException(e);
 		}
 	}
+	
 	public static String getPropertiesUser(){
 		return properties.getProperty("user");
 	}

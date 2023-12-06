@@ -1,5 +1,6 @@
 package fr.eni.lesencheres.dal.jdbc;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import fr.eni.lesencheres.bo.Enchere;
@@ -20,7 +21,7 @@ public class EnchereDAO implements GenericDAO<Enchere> {
 	}
 
 	@Override
-	public void create(Enchere entity) {
+	public void create(Enchere entity) throws SQLException {
 		// TODO Auto-generated method stub
 		
 	}
@@ -37,4 +38,5 @@ public class EnchereDAO implements GenericDAO<Enchere> {
 		
 	}
 
+	
 }

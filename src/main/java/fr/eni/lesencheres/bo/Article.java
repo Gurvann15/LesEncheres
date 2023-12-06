@@ -22,6 +22,19 @@ public class Article {
 	public Article() {
 		
 	}
+	public Article(int numArticle, String nomArticle, String description, LocalDate dateDebutEnchere,
+			LocalDate dateFinEnchere, int prixInitial, int prixVente,
+			Utilisateur utilisateurVendeur, Categorie categorie) {
+		this.numArticle = numArticle;
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEnchere = dateDebutEnchere;
+		this.dateFinEnchere = dateFinEnchere;
+		this.prixInitial = prixInitial;
+		this.prixVente = prixVente;
+		this.utilisateurVendeur = utilisateurVendeur;
+		this.categorie = categorie;
+	}
 	
 	//Constructeur complet
 	public Article(int numArticle, String nomArticle, String description, LocalDate dateDebutEnchere,

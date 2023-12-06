@@ -14,6 +14,14 @@ public class Retrait {
 		
 	}
 	//Constructeur complet
+	public Retrait(String rue, String codePostal, String ville) {
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.ville = ville;
+	}
+	
+	
+	//Constructeur complet
 	public Retrait(String rue, String codePostal, String ville, Article article) {
 		super();
 		this.rue = rue;

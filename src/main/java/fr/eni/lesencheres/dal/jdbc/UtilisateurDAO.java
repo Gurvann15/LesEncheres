@@ -53,7 +53,7 @@ public class UtilisateurDAO implements GenericDAO<Utilisateur>{
 
 	@Override
 	public List<Utilisateur> getAll() {
-		List<Utilisateur> liste = new ArrayList();
+		List<Utilisateur> liste = new ArrayList<>();
 		String sql = "select * from utilisateurs;";
 		try(Connection conn = JDBCTools.Connexion();
             PreparedStatement stmt = conn.prepareStatement(sql)){

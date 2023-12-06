@@ -54,6 +54,7 @@ public class Utilisateur {
 		        String rue, String codePostal, String ville, String password, int credit, boolean administrateur) {
 			this(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, password, administrateur);
 		}
+		
 	// Constructeur avec tous les paramètres, crédit toujours égal à 0
 	public Utilisateur(int numUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, String codePostal, String ville, String password, int credit, boolean administrateur) {
@@ -186,6 +187,7 @@ public class Utilisateur {
 	public void setListeEnchere(List<Enchere> listeEnchere) {
 		this.listeEnchere = listeEnchere;
 	}
+
 	// METHODES
 	@Override
 	public String toString() {
@@ -195,7 +197,6 @@ public class Utilisateur {
 				+ ", administrateur=" + administrateur + ", listeArticleAchat=" + listeArticleAchat
 				+ ", listeArticleVente=" + listeArticleVente + ", listeEnchere=" + listeEnchere + "]";
 	}
-	
 	
 
 }

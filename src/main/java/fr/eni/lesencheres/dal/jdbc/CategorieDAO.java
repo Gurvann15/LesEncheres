@@ -44,7 +44,7 @@ public class CategorieDAO implements GenericDAO<Categorie> {
 	
 	@Override
 	public List<Categorie> getAll() {
-		List<Categorie> liste = new ArrayList();
+		List<Categorie> liste = new ArrayList<>();
 		String sql = "select * from categories;";
 		try(Connection conn = JDBCTools.Connexion();
             PreparedStatement stmt = conn.prepareStatement(sql)){
