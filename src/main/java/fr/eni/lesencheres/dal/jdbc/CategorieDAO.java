@@ -1,6 +1,5 @@
 package fr.eni.lesencheres.dal.jdbc;
 
-import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,26 +12,6 @@ import fr.eni.lesencheres.dal.GenericDAO;
 
 public class CategorieDAO implements GenericDAO<Categorie> {
 
-	@Override
-	public Categorie getById(int id) {
-		String sql = "select * from categories where no_categorie = ?;";
-		Categorie categorie = null;
-		try{
-            Connection conn = JDBCTools.Connexion();
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setInt(1, id);
-            ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()) {
-                categorie = getCategorie(rs);
-                System.out.println(categorie);
-                }
-        	}
-		catch(Exception e) {
-            	e.printStackTrace();
-            }
-		return categorie;
-	}
-	
 	private Categorie getCategorie(ResultSet rs) throws SQLException {
         Categorie categorie;
         String libelle = rs.getString("libelle");
@@ -42,20 +21,42 @@ public class CategorieDAO implements GenericDAO<Categorie> {
     }
 
 	@Override
-	public List<Categorie> getAll() {
-		Categorie categorie = new Categorie();
-		List<Categorie> liste = new ArrayList();
-		String sql = "select * from categories;";
-		try{
-            Connection conn = JDBCTools.Connexion();
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();
+	public Categorie getById(int id) {
+		String sql = "select * from categories where no_categorie = ?;";
+		Categorie categorie = null;
+		try(Connection conn = JDBCTools.Connexion();
+            PreparedStatement stmt = conn.prepareStatement(sql);){
+            stmt.setInt(1, id);
+            try(ResultSet rs = stmt.executeQuery();){
             while (rs.next()) {
                 categorie = getCategorie(rs);
+                System.out.println(categorie);
+                }
+            }catch(Exception e) {
+            	e.printStackTrace();
+            }
+        	}
+		catch(Exception e) {
+            	e.printStackTrace();
+            }
+		return categorie;
+	}
+	
+	@Override
+	public List<Categorie> getAll() {
+		List<Categorie> liste = new ArrayList();
+		String sql = "select * from categories;";
+		try(Connection conn = JDBCTools.Connexion();
+            PreparedStatement stmt = conn.prepareStatement(sql)){
+            try(ResultSet rs = stmt.executeQuery();){
+            while (rs.next()) {
+                Categorie categorie = getCategorie(rs);
                 liste.add(categorie);
                 }
         	}
 		catch(Exception e) {
+            	e.printStackTrace();
+            }}catch(Exception e) {
             	e.printStackTrace();
             }
         return liste;
@@ -66,12 +67,10 @@ public class CategorieDAO implements GenericDAO<Categorie> {
 		String sql = "insert into categories(libelle) value (?);";
 		try(
 				Connection conn = JDBCTools.Connexion();
-				PreparedStatement preparedStatement = conn.prepareStatement(sql);
+				PreparedStatement stmt = conn.prepareStatement(sql);
 			){
-		preparedStatement.setString(1, categorie.getLibelle());
-		int resultSet = preparedStatement.executeUpdate();
-		preparedStatement.close();
-		conn.close();
+		stmt.setString(1, categorie.getLibelle());
+		int rs = stmt.executeUpdate();
 		}
 		catch(Exception e) {
 			e.printStackTrace();
@@ -81,26 +80,30 @@ public class CategorieDAO implements GenericDAO<Categorie> {
 
 	@Override
 	public void update(Categorie categorie) {
-		// TODO Auto-generated method stub
+		String sql = "update categories set libelle = ? where no_categorie =?;";
+		try (Connection conn = JDBCTools.Connexion();
+			PreparedStatement stmt = conn.prepareStatement(sql);){
+			stmt.setString(1, categorie.getLibelle());
+			stmt.setInt(2, categorie.getNumCategorie());
+			int rs = stmt.executeUpdate();
+			} catch (SQLException e) {
+			    e.printStackTrace();
+			}
 		
 	}
 
 	@Override
 	public void delete(int id) {
 		String sql = "delete from categories where no_categorie = ?;";
-		try {
-			Connection conn = JDBCTools.Connexion();
-			PreparedStatement preparedStatement = conn.prepareStatement(sql); 
-			preparedStatement.setInt(1, id);
-			int rowsAffected = preparedStatement.executeUpdate();
+		try (Connection conn = JDBCTools.Connexion();
+			PreparedStatement stmt = conn.prepareStatement(sql);){
+			stmt.setInt(1, id);
+			int rs = stmt.executeUpdate();
 			} catch (SQLException e) {
 			    e.printStackTrace();
 			}
 		
 		
 	}
-	public static void main(String[] args) {
-		
-	}
-
+	
 }
