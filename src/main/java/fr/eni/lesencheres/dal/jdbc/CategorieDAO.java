@@ -20,7 +20,7 @@ public class CategorieDAO implements GenericDAO<Categorie> {
 		try{
             Connection conn = JDBCTools.Connexion();
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1, String.valueOf(id));
+            preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 categorie = getCategorie(rs);
@@ -87,7 +87,16 @@ public class CategorieDAO implements GenericDAO<Categorie> {
 
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
+		String sql = "delete from categories where no_categorie = ?;";
+		try {
+			Connection conn = JDBCTools.Connexion();
+			PreparedStatement preparedStatement = conn.prepareStatement(sql); 
+			preparedStatement.setInt(1, id);
+			int rowsAffected = preparedStatement.executeUpdate();
+			} catch (SQLException e) {
+			    e.printStackTrace();
+			}
+		
 		
 	}
 	public static void main(String[] args) {
