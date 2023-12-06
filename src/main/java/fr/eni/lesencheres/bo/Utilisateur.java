@@ -26,39 +26,49 @@ public class Utilisateur {
 	// CONSTRUCTEURS
 	
 	// Constructeur par défaut 
-	public Utilisateur () {
-		this.credit = 0;
-		this.listeArticleAchat = new ArrayList();
-		this.listeArticleVente = new ArrayList();
-		this.listeEnchere = new ArrayList();
+	public Utilisateur() {
+	    this.credit = 0;
+	    this.listeArticleAchat = new ArrayList<>();
+	    this.listeArticleVente = new ArrayList<>();
+	    this.listeEnchere = new ArrayList<>();
 	}
-	// Constructeur avec tous les paramètres
+	
+	// Constructeur sans numéro utilisateur
+		public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone,
+		        String rue, String codePostal, String ville, String password, boolean administrateur) {
+		    this();
+		    this.pseudo = pseudo;
+			this.nom = nom;
+			this.prenom = prenom;
+			this.email = email;
+			this.telephone = telephone;
+			this.rue = rue;
+			this.codePostal = codePostal;
+			this.ville = ville;
+			this.password = password;
+			this.administrateur = administrateur;
+		}
+		
+		// Constructeur sans numéro utilisateur
+		public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone,
+		        String rue, String codePostal, String ville, String password, int credit, boolean administrateur) {
+			this(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, password, administrateur);
+		}
+	// Constructeur avec tous les paramètres, crédit toujours égal à 0
 	public Utilisateur(int numUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, String codePostal, String ville, String password, int credit, boolean administrateur) {
-		super();
+		this(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, password, administrateur);
 		this.numUtilisateur = numUtilisateur;
-		this.pseudo = pseudo;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.email = email;
-		this.telephone = telephone;
-		this.rue = rue;
-		this.codePostal = codePostal;
-		this.ville = ville;
-		this.password = password;
-		this.credit = credit;
-		this.administrateur = administrateur;
-		this.listeArticleAchat = new ArrayList<>();
-		this.listeArticleVente = new ArrayList<>();
-		this.listeEnchere = new ArrayList<>();
 	}
+	
 
-	// Constructeur avec tous les paramètres sauf crédit initialisé à 0
 	// Dans le constructeur avec crédit initialisé à 0
 	public Utilisateur(int numUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
 	        String rue, String codePostal, String ville, String password, boolean administrateur) {
 	    this(numUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, password, 0, administrateur);
 	}
+
+	
 
 
 	// GETTERS
