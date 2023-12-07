@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Nouvelle vente</title>
+</head>
+<body>
+	 <div class="container">
+        <div class="child">
+            <h1>Nouvelle vente</h1>
+        </div>
+
+        <div class="child">
+            <div class="underchild">
+                <img src="" alt="" width="" height="">
+            </div>
+
+            <div class="underchild">
+                <form action="..."  method="post">
+                    <fieldset>
+                        <legend>
+                            Informations sur l'article:
+                        </legend>
+                        <ul>
+                            <li><label for="article">Article: </label>
+                                <input name="article" id="article" type="text"></li>
+                            <li><label for="description">Description: </label>
+                                <input name="description" id="description" type="text"></li>
+                                <label for="categories">Catégorie</label>
+                            <li><select name="categorie">
+                                <option>Toutes</option>
+                                <option>Informatique</option>
+                                <option>Ameublement</option>
+                                <option>Vêtements</option>
+                                <option>Sport&Loisirs</option>
+                                </select>
+                            </li>
+                            <li><label for="photo">Photo de l'article: </label>
+                                <button>Uploader</button>
+                            <li>
+                                <select id="pricing" name="pricing" disabled>
+                                    <option value="" selected disabled>310</option>
+                                  </select>
+                            </li>
+                        </ul>
+                    </fieldset>
+
+                    <fieldset>
+                            <legend>Enchère:</legend>
+                                <ul>
+                                    <li><label for="startOfAuction">Début de l'enchère: </label>
+                                        <input name="startOfAuction" id="startOfAuction" type="datetime-local"></li>
+                                    <li><label for="endOfAuction">Fin de l'enchère: </label>
+                                            <input name="endOfAuction" id="endOfAuction" type="date"></li>
+                        </ul>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Retrait:</legend>
+                        <ul>
+                            <li><label for="street">Rue: </label>
+                                <input name="street" id="street" type="text"></li>
+                            <li><label for="postalCode">Code postal: </label>
+                                <input name="postalCode" id="postalCode" type="text" min="5" max="5"></li>
+                            <li><label for="city">Ville: </label>
+                                <input name="city" id="city" type="text"></li>
+                        </ul>
+                    </fieldset>
+                    <button>Enregistrer</button>
+                    <button>Annuler</button>
+                    <button>Annuler la vente</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

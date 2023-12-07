@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Nouvelle vente</title>
+</head>
+<body>
+	<div class="header"> 
+        <div class="container">
+            <div class="child">
+                <h1>ENI-Encheres</h1>
+            </div>
+
+            <div class="child">
+                <h2>Créer un compte</h2>    <!-- Seul truc qui change entre Desktop et mobile à l'exception du css-->
+            </div>
+
+            <div class="child">
+
+                <div class="underchild">
+                    <ul>
+                        <li><label for="identifiant">Pseudo: </label>
+                            <input name="identifiant" id="identifiant" type="text"></li>
+                        <li><label for="firstname">Prénom: </label>
+                            <input name="firstname" id="firstname" type="text"></li>
+                        <li><label for="phone">Téléphone: </label>
+                            <input name="phone" id="phone" type="tel"></li>
+                        <li><label for="postalCode">Code postal: </label>
+                            <input name="postalCode" id="postalCode" type="number" min="5" max="5"></li>
+                        <li><label for="password">Identifiant: </label>
+                            <input name="password" id="password" type="password" min="8"></li>
+                        
+                    </ul>
+                </div>
+
+                <div class="underchild">
+                    <ul>
+                        <li><label for="name">Nom: </label>
+                            <input name="name" id="name" type="text"></li>
+                        <li><label for="email">Email: </label>
+                            <input name="email" id="email" type="email"></li>
+                        <li><label for="street">Rue: </label>
+                            <input name="street" id="street" type="text"></li>
+                        <li><label for="city">Ville: </label>
+                            <input name="city" id="city" type="text"></li>
+                        <li><label for="password">Confirmation: </label>
+                            <input name="password" id="password" type="password" min="8"></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+         
+    <div class="container">
+        <div class="underchild"> <!--J'ai hésité avec child (qui aurait été plus logique) mais plus facile pour le css - "underchild -> row " -->
+            <button>Créer</button>
+        </div>
+
+        <div class="underchild">
+            <button>Annuler</button>
+        </div>
+
+    </div>
+
+</body>
+</html>
