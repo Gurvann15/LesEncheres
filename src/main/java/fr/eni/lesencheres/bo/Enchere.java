@@ -1,15 +1,28 @@
 package fr.eni.lesencheres.bo;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.time.LocalDate;
 
-// Liée en BDD à la table : encheres
 public class Enchere {
 	
-	// ATTRIBUTS
-	private LocalDate dateEnchere; // date_enchere
-	private int montantEnchere; // montant_enchere
-	private Utilisateur utilisateur;
-	private Article article;
+	private LocalDate dateEnchere;
+	private int montantEnchere;
+	private List<Utilisateur> listeUtilisateurs;
+	private Article article; 
 	
+	//Constructeur par défaut
+	public Enchere() {
+		this.listeUtilisateurs = new ArrayList();
+		this.article = new Article();
+	}
 	
+	//Constructeur complet
+	public Enchere(LocalDate dateEnchere, int montantEnchere) {
+		this.dateEnchere = dateEnchere;
+		this.montantEnchere = montantEnchere;
+		this.listeUtilisateurs = new ArrayList();
+		this.article = new Article();
+	}
+
 }

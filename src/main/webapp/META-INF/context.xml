@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <Resource name="jdbc/LesEncheres" auth="Container" type="javax.sql.DataSource"
+              username="Jean" password="BTSSIO2023!"
+              driverClassName="com.mysql.cj.jdbc.Driver"
+              url="jdbc:mysql://127.0.0.1:3306/LesEncheres" />
+</Context>

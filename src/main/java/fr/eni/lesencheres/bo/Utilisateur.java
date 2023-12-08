@@ -3,40 +3,38 @@ package fr.eni.lesencheres.bo;
 import java.util.ArrayList;
 import java.util.List;
 
-// table couplée en BDD : Utilisateur
 public class Utilisateur {
 
-	// ATTRIBUTS
-	private int numUtilisateur; // no_utilisateur / clé primaire
-	private String pseudo; // pseudo / TO DO: vérifier pas + 30 caractères en DLL
-	private String nom; // nom / TO DO: vérifier pas + 30 caractères en DLL
-	private String prenom; // prenom / TO DO: vérifier pas + 30 caractères en DLL
-	private String email; // email / TO DO: vérifier pas + 20 caractères en DLL + regex
-	private String telephone; // telephone / TO DO: vérifier pas + 15 caractères en DLL + regex
-	private String rue; // rue / TO DO: vérifier pas + 30 caractères en DLL
-	private String codePostal; // code_postal / TO DO: vérifier pas + 10 caractères en DLL + regex
-	private String ville; // ville / TO DO: vérifier pas + 30 caractères en DLL
-	private String password; // mot_de_passe / TO DO: vérifier pas + 30 caractères en DLL
-	private int credit; // credit
-	private boolean administrateur; // administrateur
-	private List<Article> listeArticleAchat;
-	private List<Article> listeArticleVente;
-	private List<Enchere> listeEnchere;
-
-	// CONSTRUCTEURS
+	private int noUtilisateur;
+	private String pseudo;
+	private String nom;
+	private String prenom;
+	private String email;
+	private String telephone;
+	private String rue;
+	private String codePostal;
+	private String ville;
+	private String motDePasse;
+	private int credit;
+	private boolean administrateur;
+	private List<Article> listeArticleAchete;
+	private List<Article> listeArticleVendu;
+	private List<Enchere> listeEncheres;
 	
-	// Constructeur par défaut 
-	public Utilisateur () {
+	
+	//Constructeur par défaut 
+	public Utilisateur() {
 		this.credit = 0;
-		this.listeArticleAchat = new ArrayList();
-		this.listeArticleVente = new ArrayList();
-		this.listeEnchere = new ArrayList();
+		this.listeArticleAchete = new ArrayList();
+		this.listeArticleVendu = new ArrayList();
+		this.listeEncheres = new ArrayList(); 
+		
 	}
-	// Constructeur avec tous les paramètres
-	public Utilisateur(int numUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
-			String rue, String codePostal, String ville, String password, int credit, boolean administrateur) {
-		super();
-		this.numUtilisateur = numUtilisateur;
+	
+	//Constructeur complet
+	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal, String ville,  
+			String motDePasse, Boolean administrateur, int credit) {
+		this.noUtilisateur = noUtilisateur;
 		this.pseudo = pseudo;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -45,25 +43,19 @@ public class Utilisateur {
 		this.rue = rue;
 		this.codePostal = codePostal;
 		this.ville = ville;
-		this.password = password;
-		this.credit = credit;
+		this.motDePasse = motDePasse;
 		this.administrateur = administrateur;
-		this.listeArticleAchat = new ArrayList<>();
-		this.listeArticleVente = new ArrayList<>();
-		this.listeEnchere = new ArrayList<>();
+		this.credit = credit;
+		this.listeArticleAchete = new ArrayList();
+		this.listeArticleVendu = new ArrayList();
+		this.listeEncheres = new ArrayList();
+		
 	}
+	
+	//GETTERS
 
-	// Constructeur avec tous les paramètres sauf crédit initialisé à 0
-	// Dans le constructeur avec crédit initialisé à 0
-	public Utilisateur(int numUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
-	        String rue, String codePostal, String ville, String password, boolean administrateur) {
-	    this(numUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, password, 0, administrateur);
-	}
-
-
-	// GETTERS
-	public int getNumUtilisateur() {
-		return numUtilisateur;
+	public int getNoUtilisateur() {
+		return noUtilisateur;
 	}
 
 	public String getPseudo() {
@@ -98,8 +90,8 @@ public class Utilisateur {
 		return ville;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getMotDePasse() {
+		return motDePasse;
 	}
 
 	public int getCredit() {
@@ -109,19 +101,24 @@ public class Utilisateur {
 	public boolean isAdministrateur() {
 		return administrateur;
 	}
-	public List<Article> getListeArticleAchat() {
-		return listeArticleAchat;
-	}
-	public List<Article> getListeArticleVente() {
-		return listeArticleVente;
-	}
-	public List<Enchere> getListeEnchere() {
-		return listeEnchere;
+
+	public List<Article> getListeArticleAchete() {
+		return listeArticleAchete;
 	}
 
-	// SETTERS
-	public void setNumUtilisateur(int numUtilisateur) {
-		this.numUtilisateur = numUtilisateur;
+	public List<Article> getListeArticleVendu() {
+		return listeArticleVendu;
+	}
+
+	public List<Enchere> getListeEncheres() {
+		return listeEncheres;
+	}
+	
+	
+	//SETTERS
+
+	public void setNoUtilisateur(int noUtilisateur) {
+		this.noUtilisateur = noUtilisateur;
 	}
 
 	public void setPseudo(String pseudo) {
@@ -156,8 +153,8 @@ public class Utilisateur {
 		this.ville = ville;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setMotDePasse(String motDePasse) {
+		this.motDePasse = motDePasse;
 	}
 
 	public void setCredit(int credit) {
@@ -167,25 +164,18 @@ public class Utilisateur {
 	public void setAdministrateur(boolean administrateur) {
 		this.administrateur = administrateur;
 	}
-	public void setListeArticleAchat(List<Article> listeArticleAchat) {
-		this.listeArticleAchat = listeArticleAchat;
+
+	public void setListeArticleAchete(List<Article> listeArticleAchete) {
+		this.listeArticleAchete = listeArticleAchete;
 	}
-	public void setListeArticleVente(List<Article> listeArticleVente) {
-		this.listeArticleVente = listeArticleVente;
+
+	public void setListeArticleVendu(List<Article> listeArticleVendu) {
+		this.listeArticleVendu = listeArticleVendu;
 	}
-	public void setListeEnchere(List<Enchere> listeEnchere) {
-		this.listeEnchere = listeEnchere;
+
+	public void setListeEncheres(List<Enchere> listeEncheres) {
+		this.listeEncheres = listeEncheres;
 	}
-	// METHODES
-	@Override
-	public String toString() {
-		return "Utilisateur [numUtilisateur=" + numUtilisateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom="
-				+ prenom + ", email=" + email + ", telephone=" + telephone + ", rue=" + rue + ", codePostal="
-				+ codePostal + ", ville=" + ville + ", password=" + password + ", credit=" + credit
-				+ ", administrateur=" + administrateur + ", listeArticleAchat=" + listeArticleAchat
-				+ ", listeArticleVente=" + listeArticleVente + ", listeEnchere=" + listeEnchere + "]";
-	}
-	
 	
 
 }

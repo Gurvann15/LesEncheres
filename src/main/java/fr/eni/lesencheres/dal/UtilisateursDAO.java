@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.lesencheres.bo.Utilisateur;
-import fr.eni.lesencheres.dal.connectionBDD;
 
 public class UtilisateursDAO {
 	
