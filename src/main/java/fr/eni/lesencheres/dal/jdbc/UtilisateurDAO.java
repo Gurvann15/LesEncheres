@@ -10,8 +10,9 @@ import java.util.List;
 import fr.eni.lesencheres.bo.Categorie;
 import fr.eni.lesencheres.bo.Utilisateur;
 import fr.eni.lesencheres.dal.GenericDAO;
+import fr.eni.lesencheres.dal.InterfaceUtilisateurDAO;
 
-public class UtilisateurDAO implements GenericDAO<Utilisateur>{
+public class UtilisateurDAO implements InterfaceUtilisateurDAO{
 
 	private Utilisateur getUtilisateur(ResultSet rs) throws SQLException {
         Utilisateur utilisateur;
@@ -51,6 +52,28 @@ public class UtilisateurDAO implements GenericDAO<Utilisateur>{
 		return utilisateur;
 	}
 
+	
+	public Utilisateur getByPseudo(String pseudo) {
+		Utilisateur utilisateur = null;
+		String sql = "select * from utilisateurs where pseudo = ?;";
+		try(Connection conn = JDBCTools.Connexion();
+            PreparedStatement stmt = conn.prepareStatement(sql);){
+            stmt.setString(1, pseudo);
+            try(ResultSet rs = stmt.executeQuery();){
+            while (rs.next()) {
+                utilisateur = getUtilisateur(rs);
+                System.out.println(utilisateur);
+                }
+            }catch(Exception e) {
+            	e.printStackTrace();
+            }
+        	}
+		catch(Exception e) {
+            	e.printStackTrace();
+            }
+		return utilisateur;
+	}
+	
 	@Override
 	public List<Utilisateur> getAll() {
 		List<Utilisateur> liste = new ArrayList<>();

@@ -17,6 +17,6 @@ public class DAOFactory {
 	public static GenericDAO<Categorie> getCategorieDAO(){return new CategorieDAO();}
 	public static GenericDAO<Enchere> getEnchereDAO(){return new EnchereDAO();}
 	public static GenericDAO<Retrait> getRetraitDAO(){return new RetraitDAO();}
-	public static GenericDAO<Utilisateur> getUtilisateurDAO(){return new UtilisateurDAO();}
+	public static InterfaceUtilisateurDAO getUtilisateurDAO(){return new UtilisateurDAO();}
 
 }

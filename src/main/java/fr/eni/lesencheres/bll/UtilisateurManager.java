@@ -1,29 +1,43 @@
 package fr.eni.lesencheres.bll;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
+import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
 
 import fr.eni.lesencheres.bo.Utilisateur;
 import fr.eni.lesencheres.dal.DAOFactory;
 import fr.eni.lesencheres.dal.GenericDAO;
+import fr.eni.lesencheres.dal.InterfaceUtilisateurDAO;
 import fr.eni.lesencheres.messages.ErrorManager;
 import fr.eni.lesencheres.messages.ErrorMessage;
 
 public class UtilisateurManager {
-	GenericDAO<Utilisateur> utilisateurDAO = DAOFactory.getUtilisateurDAO();
+	InterfaceUtilisateurDAO utilisateurDAO = DAOFactory.getUtilisateurDAO();
 	String errorMessage;
 	private static final String PASS_REGEX = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\\\\-=\\\\[\\\\]{};':\\\"\\\\\\\\|,.<>\\\\/?]).{10,}$";
 	private static final String EMAIL_REGEX = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}$";
 	
-	public UtilisateurManager(GenericDAO<Utilisateur> utilisateurDAO) {
+	public UtilisateurManager(InterfaceUtilisateurDAO utilisateurDAO) {
 		this.utilisateurDAO = utilisateurDAO;
 	}
 
 	public Utilisateur getUtilisateurById(int id) {
 		try{
 			Utilisateur utilisateur = utilisateurDAO.getById(id);
+			validerUtilisateur(utilisateur);
+			return utilisateur;
+		}catch(ErrorManager e) {
+			gestionErreur("utilisateurInexistant",e);
+			throw new ErrorManager(errorMessage);
+		}
+	}
+	
+	public Utilisateur getUtilisateurByPseudo(String pseudo) {
+		try{
+			Utilisateur utilisateur = utilisateurDAO.getByPseudo(pseudo);
 			validerUtilisateur(utilisateur);
 			return utilisateur;
 		}catch(ErrorManager e) {
@@ -95,8 +109,7 @@ public class UtilisateurManager {
 				u.getCodePostal()== null  ||
 				u.getVille()== null  ||
 				u.getPassword() == null ||
-				u.getCredit() < 0 ||
-				u.isAdministrateur() != (true|false))  {
+				u.getCredit() < 0)  {
 			errorMessage = ErrorMessage.getMessage("infoObligatoire");
 		}
 		else if(u.getPseudo().length()>30 || 

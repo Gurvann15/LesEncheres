@@ -1,7 +1,9 @@
 package fr.eni.lesencheres.bll;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 import fr.eni.lesencheres.bo.Categorie;
 import fr.eni.lesencheres.dal.DAOFactory;
@@ -10,6 +12,7 @@ import fr.eni.lesencheres.messages.ErrorManager;
 import fr.eni.lesencheres.messages.ErrorMessage;
 
 public class CategorieManager {
+
 	GenericDAO<Categorie> categorieDAO = DAOFactory.getCategorieDAO();
 	String errorMessage;
 
