@@ -36,21 +36,25 @@ public class ConnexionServlet extends HttpServlet {
 		try {
 			// Récupérer l'utilisateur par son identifiant (ici, supposons que l'identifiant est le pseudo)
 			Utilisateur utilisateur = utilisateurManager.getUtilisateurByPseudo(identifiant);
+			System.out.println(utilisateur);
+			System.out.println("Mot de pass fourni = " + password);
+			System.out.println("Mot de pass en bdd = " + utilisateur.getPassword());
 
 			// Valider le mot de passe
 			if (utilisateur != null && utilisateur.getPassword().equals(password)) {
 				// Authentification réussie, rediriger vers une page de succès
-				response.sendRedirect("/accueil.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/accueil.jsp");
+				dispatcher.forward(request, response);
 			} else {
 				// Authentification échouée, rediriger vers la page de connexion avec un message d'erreur
 				request.setAttribute("erreur", "Identifiant ou mot de passe incorrect");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/connexion.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/connexion.jsp");
 				dispatcher.forward(request, response);
 			}
 		} catch (ErrorManager e) {
 			// Gérer les erreurs, rediriger vers la page de connexion avec un message d'erreur
 			request.setAttribute("erreur", e.getMessage());
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/connexion.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/connexion.jsp");
 			dispatcher.forward(request, response);
 		}
 	}
