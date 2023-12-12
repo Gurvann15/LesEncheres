@@ -116,3 +116,10 @@ main {
     align-items: center;
     margin-bottom: 1vw;
 }
+
+.error-message{
+	color: red;
+	margin: 1vw 0vw;
+	font-family: 'Fjalla One', sans-serif;
+	
+}

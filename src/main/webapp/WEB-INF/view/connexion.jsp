@@ -28,9 +28,13 @@
       <input type="text" id="identifiant" name="identifiant"/>
       <label for="password">Mot de passe : </label>
       <input type="password" id="password" name="password"/>
+      <% if (request.getAttribute("erreur") != null) { %>
+            <div class="error-message"><%= request.getAttribute("erreur") %></div>
+        <% } %>
       <div class ="Souvenir"><input type="checkbox" cols="1"><libellé class ="libelle">Se souvenir de moi</libellé></input></div>
       <button type="submit" >Se connecter</button>
     </form>
+    
     <button>Créer un compte</button>
     <div class="password-forgot"><a href="">Mot de passe oublié</a></div>
 </main>

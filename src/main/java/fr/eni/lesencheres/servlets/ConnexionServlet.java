@@ -13,6 +13,7 @@ import fr.eni.lesencheres.bll.UtilisateurManager;
 import fr.eni.lesencheres.bo.Utilisateur;
 import fr.eni.lesencheres.dal.DAOFactory;
 import fr.eni.lesencheres.messages.ErrorManager;
+import fr.eni.lesencheres.messages.ErrorMessage;
 
 /**
  * Servlet implementation class ConnexionServlet
@@ -47,7 +48,7 @@ public class ConnexionServlet extends HttpServlet {
 				dispatcher.forward(request, response);
 			} else {
 				// Authentification échouée, rediriger vers la page de connexion avec un message d'erreur
-				request.setAttribute("erreur", "Identifiant ou mot de passe incorrect");
+				request.setAttribute("erreur", ErrorMessage.getMessage("connexionError"));
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/connexion.jsp");
 				dispatcher.forward(request, response);
 			}
