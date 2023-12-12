@@ -1,0 +1,118 @@
+@charset "UTF-8";
+header {
+    background: #2a2438;
+    color: #dbd8e3;
+    font-family: 'Fjalla One', sans-serif;
+    margin-bottom: 2%;
+    padding-top: 2vh;
+}
+
+header h1 {
+    text-transform: uppercase;
+    letter-spacing: 0.4em;
+    margin: 1vh 2vw 0 2vw;
+}
+
+header a {
+    background: #2a2438;
+    color: #dbd8e3;
+    margin: 1vh 2vw 0 2vw;
+}
+
+/* Link Styles */
+a {
+    color: #352f44;
+    font-family: 'Fjalla One', sans-serif;
+    text-decoration: none;
+    font-size: 1.2vw;
+    letter-spacing: 0.02em;
+}
+
+a:hover {
+    color: #5c5470;
+}
+
+/* Navigation Styles */
+nav {
+    text-align: right;
+    padding: 2vh 0;
+}
+
+/* Form Styles */
+form {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 25%;
+}
+
+label, .Souvenir {
+    margin: 0.5vh 2vw 0.5vh 2vw;
+    padding-top: 5%;
+    font-family: 'Fjalla One', sans-serif;
+    text-transform: uppercase;
+    font-size: 1.4vw;
+    color: #352f44;
+}
+
+.Souvenir {
+    font-size: 1vw;
+    margin-left: 0%;
+}
+
+input {
+    padding: 1vw;
+}
+
+button {
+    width: 18%;
+    display: inline-block;
+    background-color: #5c5470;
+    border-radius: 4px;
+    border: none;
+    text-transform: uppercase;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 1vh;
+    margin-left: 41vw;
+    padding: 1vw;
+    font-size: 0.8vw;
+    letter-spacing: 0.2em;
+}
+
+form button{
+    margin-left: 21vw;
+}
+
+
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+.password-forgot {
+    margin-left: 64vw;
+    margin-top: 1vh;
+    display: block;  
+}
+
+.libelle {
+    margin-left: 1vw;
+}
+
+.blocForm{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0vh 3vh;
+}
+
+.formulaireInscription{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 1vw;
+}
