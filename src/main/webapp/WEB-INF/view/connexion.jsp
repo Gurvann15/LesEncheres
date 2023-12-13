@@ -19,7 +19,7 @@
     <header>
         <h1>ENI-Encheres</h1>
         <nav>
-            <a href="">Qui sommes nous ?</a>
+            <a href="<%=request.getContextPath()%>/quisommesnous">Qui sommes nous ?</a>
         </nav>
     </header>
     <main>
@@ -35,7 +35,7 @@
       <button type="submit" >Se connecter</button>
     </form>
     
-    <button>Créer un compte</button>
+    <button><a href="<%=request.getContextPath()%>/inscription">Créer un compte</button>
     <div class="password-forgot"><a href="">Mot de passe oublié</a></div>
 </main>
 </body>

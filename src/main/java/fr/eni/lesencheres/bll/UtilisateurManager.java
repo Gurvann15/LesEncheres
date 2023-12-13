@@ -19,7 +19,7 @@ public class UtilisateurManager {
 	String errorMessage;
 	private static final String PASS_REGEX = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\\\\\\-\\=\\[\\]{};':\"\\\\\\\\|,.<>\\\\/?]).{10,}$";
 	private static final String EMAIL_REGEX = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}$";
-	
+
 	public UtilisateurManager(InterfaceUtilisateurDAO utilisateurDAO) {
 		this.utilisateurDAO = utilisateurDAO;
 	}
@@ -34,7 +34,7 @@ public class UtilisateurManager {
 			throw new ErrorManager(errorMessage);
 		}
 	}
-	
+
 	public Utilisateur getUtilisateurByPseudo(String pseudo) {
 		try{
 			Utilisateur utilisateur = utilisateurDAO.getByPseudo(pseudo);
@@ -46,7 +46,18 @@ public class UtilisateurManager {
 		}
 	}
 
-	public List<Utilisateur> getAllCategories() {
+	public Utilisateur getUtilisateurByEmail(String email) {
+		try{
+			Utilisateur utilisateur = utilisateurDAO.getByEmail(email);
+			validerUtilisateur(utilisateur);
+			return utilisateur;
+		}catch(ErrorManager e) {
+			gestionErreur("mailExistant",e);
+			throw new ErrorManager(errorMessage);
+		}
+	}
+
+	public List<Utilisateur> getAllUtilisateurs() {
 		try {
 			return utilisateurDAO.getAll();
 		}catch (ErrorManager e){
@@ -56,23 +67,23 @@ public class UtilisateurManager {
 	}
 
 	public void createUtilisateur(Utilisateur u) {
-    	if (utilisateurExisteEnLocal(u.getNumUtilisateur())){
-        	errorMessage = ErrorMessage.getMessage("utilisateurDejaExistant");
-        	throw new ErrorManager(errorMessage);
-        }
-    	else if (getUtilisateurById(u.getNumUtilisateur()) != null){
-        	errorMessage = ErrorMessage.getMessage("utilisateurDejaExistant");
-        	throw new ErrorManager(errorMessage);
-        }else {
-        try {
-            validerUtilisateur(u);
-            utilisateurDAO.create(u);
-        }catch (Exception e){
-        	gestionErreur("utilisateurNonAjoute",e);
+		if (utilisateurExisteEnLocal(u.getNumUtilisateur())){
+			errorMessage = ErrorMessage.getMessage("utilisateurDejaExistant");
 			throw new ErrorManager(errorMessage);
-        }
-        }
-    }
+		}
+		else if (getUtilisateurById(u.getNumUtilisateur()) != null){
+			errorMessage = ErrorMessage.getMessage("utilisateurDejaExistant");
+			throw new ErrorManager(errorMessage);
+		}else {
+			try {
+				validerUtilisateur(u);
+				utilisateurDAO.create(u);
+			}catch (Exception e){
+				gestionErreur("utilisateurNonAjoute",e);
+				throw new ErrorManager(errorMessage);
+			}
+		}
+	}
 
 	public void updateUtilisateur(Utilisateur u) {
 		try {
@@ -95,54 +106,56 @@ public class UtilisateurManager {
 			throw new ErrorManager(errorMessage);
 		}
 	}
-	
+
 	// METHODES PRIVEES
-	
+
 	private void validerUtilisateur(Utilisateur u) {
 		String errorMessage=null;
-		Objects.requireNonNull(u, ErrorMessage.getMessage("utilisateurInexistant"));
-		if(u.getPseudo() == null || 
-				u.getNom()== null ||
-				u.getPrenom() == null  ||
-				u.getEmail() == null ||
-				u.getRue()== null  ||
-				u.getCodePostal()== null  ||
-				u.getVille()== null  ||
-				u.getPassword() == null ||
-				u.getCredit() < 0)  {
-			errorMessage = ErrorMessage.getMessage("infoObligatoire");
+		if (u == null) {
+			errorMessage = ErrorMessage.getMessage("utilisateurInexistant");
 		}
-		else if(u.getPseudo().length()>30 || 
-				u.getNom().length() > 30 ||
-				u.getPrenom().length() >30 ||
-				u.getEmail().length() >20 ||
-				u.getTelephone().length() > 15 ||
-				u.getRue().length() > 30 ||
-				u.getCodePostal().length() > 10 ||
-				u.getVille().length() > 30 ||
-				u.getPassword().length() > 30) {
-			errorMessage = ErrorMessage.getMessage("longueurChamp");
-		}
-		else if(verifPassword(u.getPassword()) == false) {
-			errorMessage = ErrorMessage.getMessage("motPassNonNorme");
-		}
-		else if(verifEmail(u.getEmail()) == false) {
-			errorMessage = ErrorMessage.getMessage("emailNonNorme");
-		}
-		if(errorMessage!=null) {
-			throw new ErrorManager(errorMessage);
-		}
+		else {
+			if(u.getPseudo() == null || 
+					u.getNom()== null ||
+					u.getPrenom() == null  ||
+					u.getEmail() == null ||
+					u.getRue()== null  ||
+					u.getCodePostal()== null  ||
+					u.getVille()== null  ||
+					u.getPassword() == null) {
+				errorMessage = ErrorMessage.getMessage("infoObligatoire");
+			}
+			else if(u.getPseudo().length()>30 || 
+					u.getNom().length() > 30 ||
+					u.getPrenom().length() >30 ||
+					u.getEmail().length() >20 ||
+					u.getTelephone().length() > 15 ||
+					u.getRue().length() > 30 ||
+					u.getCodePostal().length() > 10 ||
+					u.getVille().length() > 30 ||
+					u.getPassword().length() > 30) {
+				errorMessage = ErrorMessage.getMessage("longueurChamp");
+			}
+			else if(verifPassword(u.getPassword()) == false) {
+				errorMessage = ErrorMessage.getMessage("motPassNonNorme");
+			}
+			else if(verifEmail(u.getEmail()) == false) {
+				errorMessage = ErrorMessage.getMessage("emailNonNorme");
+			}
+			if(errorMessage!=null) {
+				throw new ErrorManager(errorMessage);
+			}}
 	}
-	
+
 	private boolean verifPassword(String password) {
 		Pattern pattern = Pattern.compile(PASS_REGEX);
-        java.util.regex.Matcher matcher = pattern.matcher(password);
+		java.util.regex.Matcher matcher = pattern.matcher(password);
 		return matcher.matches();
 	}
-	
+
 	private boolean verifEmail(String email) {
 		Pattern pattern = Pattern.compile(EMAIL_REGEX);
-        java.util.regex.Matcher matcher = pattern.matcher(email);
+		java.util.regex.Matcher matcher = pattern.matcher(email);
 		return matcher.matches();
 	}
 
@@ -150,15 +163,15 @@ public class UtilisateurManager {
 		errorMessage = ErrorMessage.getMessage(errorCode);
 		e.printStackTrace();
 	}
-	
+
 	private boolean utilisateurExisteEnLocal(int id) {
-        List<Utilisateur> liste = utilisateurDAO.getAll();
-        for (Utilisateur u : liste) {
-            if (u.getNumUtilisateur() == id) {
-                return true;
-            }
-        }
-        return false;
-    }
+		List<Utilisateur> liste = utilisateurDAO.getAll();
+		for (Utilisateur u : liste) {
+			if (u.getNumUtilisateur() == id) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 }

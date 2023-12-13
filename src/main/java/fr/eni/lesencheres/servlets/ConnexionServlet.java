@@ -3,6 +3,7 @@ package fr.eni.lesencheres.servlets;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -22,9 +23,6 @@ public class ConnexionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UtilisateurManager utilisateurManager = new UtilisateurManager(DAOFactory.getUtilisateurDAO());
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/connexion.jsp");
 		dispatcher.forward(request, response);
@@ -37,14 +35,16 @@ public class ConnexionServlet extends HttpServlet {
 		try {
 			// Récupérer l'utilisateur par son identifiant (ici, supposons que l'identifiant est le pseudo)
 			Utilisateur utilisateur = utilisateurManager.getUtilisateurByPseudo(identifiant);
-			System.out.println(utilisateur);
-			System.out.println("Mot de pass fourni = " + password);
-			System.out.println("Mot de pass en bdd = " + utilisateur.getPassword());
 
 			// Valider le mot de passe
 			if (utilisateur != null && utilisateur.getPassword().equals(password)) {
+				Cookie pseudoCookie = new Cookie("pseudo", utilisateur.getPseudo());
+                // Cookie gardé pendant 1 semaine
+                pseudoCookie.setMaxAge(30 * 24 * 60 * 60);
+                // Ajouter le cookie à la réponse
+                response.addCookie(pseudoCookie);
 				// Authentification réussie, rediriger vers une page de succès
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/accueil.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/accueil");
 				dispatcher.forward(request, response);
 			} else {
 				// Authentification échouée, rediriger vers la page de connexion avec un message d'erreur

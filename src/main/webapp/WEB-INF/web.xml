@@ -4,7 +4,7 @@
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>accueil.jsp</welcome-file>
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
@@ -18,21 +18,37 @@
     <url-pattern>/connexion</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>UtilisateurServlet</servlet-name>
-    <servlet-class>fr.eni.lesencheres.servlets.UtilisateurServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>UtilisateurServlet</servlet-name>
-    <url-pattern>/utilisateur</url-pattern>
-  </servlet-mapping>
-  <servlet>
     <description></description>
-    <display-name>InscriptionServlet</display-name>
     <servlet-name>InscriptionServlet</servlet-name>
     <servlet-class>fr.eni.lesencheres.servlets.InscriptionServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>InscriptionServlet</servlet-name>
     <url-pattern>/inscription</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AccueilServlet</servlet-name>
+    <servlet-class>fr.eni.lesencheres.servlets.AccueilServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AccueilServlet</servlet-name>
+    <url-pattern>/accueil</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>QuiSommesNous</servlet-name>
+    <servlet-class>fr.eni.lesencheres.servlets.QuiSommesNous</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>QuiSommesNous</servlet-name>
+    <url-pattern>/quisommesnous</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ModificationServlet</servlet-name>
+    <servlet-class>fr.eni.lesencheres.servlets.ModificationServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModificationServlet</servlet-name>
+    <url-pattern>/modification</url-pattern>
   </servlet-mapping>
 </web-app>

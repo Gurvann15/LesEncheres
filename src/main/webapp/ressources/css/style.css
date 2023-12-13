@@ -20,9 +20,17 @@ header a {
 }
 
 /* Link Styles */
-a {
+a{
     color: #352f44;
     font-family: 'Fjalla One', sans-serif;
+    text-decoration: none;
+    font-size: 1.2vw;
+    letter-spacing: 0.02em;
+}
+
+button a, button a:hover, form button, button{
+	color: #dbd8e3;
+	font-family: 'Fjalla One', sans-serif;
     text-decoration: none;
     font-size: 1.2vw;
     letter-spacing: 0.02em;
@@ -36,6 +44,14 @@ a:hover {
 nav {
     text-align: right;
     padding: 2vh 0;
+}
+
+.quisommesnous{	
+	width: 70%;
+	text-align: center;
+	font-family: 'Fjalla One', sans-serif;
+    text-decoration: none;
+    margin-left: 15%;
 }
 
 /* Form Styles */

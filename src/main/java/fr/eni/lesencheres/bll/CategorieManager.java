@@ -86,19 +86,21 @@ public class CategorieManager {
 
 	private void validerCategorie(Categorie c) {
 		String errorMessage=null;
-		Objects.requireNonNull(c, ErrorMessage.getMessage("articleInexistant"));
-		if (c.getLibelle()==null) {
-			errorMessage = ErrorMessage.getMessage("libelleObligatoire");
-		}
-		else if(c.getLibelle().length() >30 ||c.getLibelle().length() == 0) {
-			errorMessage = ErrorMessage.getMessage("longueurLibelle");
-		}
-		else if(c.getNumCategorie()<=0) {
-			errorMessage = ErrorMessage.getMessage("numeroCategorieInadaptee");
-		}
-		if(errorMessage!=null) {
-			throw new ErrorManager(errorMessage);
-		}
+		if (c == null) {
+			errorMessage = ErrorMessage.getMessage("categorieIntrouvable");
+		}else {
+			if (c.getLibelle()==null) {
+				errorMessage = ErrorMessage.getMessage("libelleObligatoire");
+			}
+			else if(c.getLibelle().length() >30 ||c.getLibelle().length() == 0) {
+				errorMessage = ErrorMessage.getMessage("longueurLibelle");
+			}
+			else if(c.getNumCategorie()<=0) {
+				errorMessage = ErrorMessage.getMessage("numeroCategorieInadaptee");
+			}
+			if(errorMessage!=null) {
+				throw new ErrorManager(errorMessage);
+			}}
 	}
 
 	private void gestionErreur(String errorCode, Exception e) {

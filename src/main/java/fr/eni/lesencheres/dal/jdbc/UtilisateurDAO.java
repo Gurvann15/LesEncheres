@@ -75,6 +75,28 @@ public class UtilisateurDAO implements InterfaceUtilisateurDAO{
 	}
 	
 	@Override
+	public Utilisateur getByEmail(String email) {
+		Utilisateur utilisateur = null;
+		String sql = "select * from utilisateurs where email = ?;";
+		try(Connection conn = JDBCTools.Connexion();
+            PreparedStatement stmt = conn.prepareStatement(sql);){
+            stmt.setString(1, email);
+            try(ResultSet rs = stmt.executeQuery();){
+            while (rs.next()) {
+                utilisateur = getUtilisateur(rs);
+                System.out.println(utilisateur);
+                }
+            }catch(Exception e) {
+            	e.printStackTrace();
+            }
+        	}
+		catch(Exception e) {
+            	e.printStackTrace();
+            }
+		return utilisateur;
+	}
+	
+	@Override
 	public List<Utilisateur> getAll() {
 		List<Utilisateur> liste = new ArrayList<>();
 		String sql = "select * from utilisateurs;";
@@ -161,6 +183,7 @@ public class UtilisateurDAO implements InterfaceUtilisateurDAO{
 			}
 		
 	}
+	
 
 	
 
