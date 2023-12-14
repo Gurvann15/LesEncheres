@@ -76,6 +76,7 @@ public class UtilisateurManager {
 			throw new ErrorManager(errorMessage);
 		}else {
 			try {
+				utilisateurDAO.create(u);
 				validerUtilisateur(u);
 				utilisateurDAO.create(u);
 			}catch (Exception e){
@@ -87,8 +88,8 @@ public class UtilisateurManager {
 
 	public void updateUtilisateur(Utilisateur u) {
 		try {
-			validerUtilisateur(u);
 			utilisateurDAO.update(u);
+			validerUtilisateur(u);
 		} catch (Exception e) {
 			gestionErreur("utilisateurNonModifie",e);
 			throw new ErrorManager(errorMessage);

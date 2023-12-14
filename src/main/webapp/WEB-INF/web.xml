@@ -42,7 +42,6 @@
     <servlet-name>QuiSommesNous</servlet-name>
     <url-pattern>/quisommesnous</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>ModificationServlet</servlet-name>
     <servlet-class>fr.eni.lesencheres.servlets.ModificationServlet</servlet-class>
@@ -51,4 +50,31 @@
     <servlet-name>ModificationServlet</servlet-name>
     <url-pattern>/modification</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>DeconnexionServlet</servlet-name>
+    <servlet-class>fr.eni.lesencheres.servlets.DeconnexionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeconnexionServlet</servlet-name>
+    <url-pattern>/deconnexion</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ProfilServlet</servlet-name>
+    <servlet-class>fr.eni.lesencheres.servlets.ProfilServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProfilServlet</servlet-name>
+    <url-pattern>/profil</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>informationServlet</servlet-name>
+    <servlet-class>fr.eni.lesencheres.servlets.informationServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>informationServlet</servlet-name>
+    <url-pattern>/info</url-pattern>
+  </servlet-mapping>
+  <session-config>
+    <session-timeout>30</session-timeout>
+</session-config>
 </web-app>

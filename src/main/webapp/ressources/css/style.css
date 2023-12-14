@@ -28,13 +28,15 @@ a{
     letter-spacing: 0.02em;
 }
 
-button a, button a:hover, form button, button{
+button a, button a:hover, form button, button, .filter-submit{
 	color: #dbd8e3;
 	font-family: 'Fjalla One', sans-serif;
     text-decoration: none;
     font-size: 1.2vw;
     letter-spacing: 0.02em;
 }
+
+
 
 a:hover {
     color: #5c5470;
@@ -138,4 +140,119 @@ main {
 	margin: 1vw 0vw;
 	font-family: 'Fjalla One', sans-serif;
 	
+}
+.search-form {
+    margin-top: 2vh;
+}
+
+.search-input,
+.search-submit {
+    padding: 1vw;
+}
+
+.create-account {
+    margin-top: 1vh;
+    margin-left: 41vw;
+    padding: 1vw;
+    font-size: 0.8vw;
+    letter-spacing: 0.2em;
+}
+
+.password-forgot {
+    margin-left: 64vw;
+    margin-top: 1vh;
+}
+
+.container {
+    margin: 2vh 0;
+}
+
+.auction-list-heading {
+    margin-left: 6vh;
+    font-size: 1.8vw;
+    color: #352f44;
+    font-family: 'Fjalla One', sans-serif;
+    margin-bottom: 2%;
+    padding-top: 2vh;
+
+}
+
+.filter-form {
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-group {
+    margin: 0.5vh 2vw 0.5vh 2vw;
+}
+
+.filter-input,
+.category-select,
+.filter-submit {
+    padding: 1vw;
+    padding-right : 4vw;
+}
+
+.filter-submit {
+    width: 20%;
+}
+
+.item-list {
+    margin-top: 2vh;
+}
+
+.item {
+    display: flex;
+    list-style: none;
+    border: 1px solid #ddd; /* Ajout de style pour la bordure */
+    padding: 1vw;
+    margin-right: 5vw;
+}
+
+.item-left {
+    margin-right: 1vw;
+}
+
+.item-image {
+    width: 50px; /* Ajustez la taille de l'image selon vos besoins */
+    height: 50px; /* Ajustez la taille de l'image selon vos besoins */
+}
+
+.item-right {
+    flex: 1;
+}
+
+.item-name {
+    font-size: 1.2vw;
+    color: #352f44;
+    margin-bottom: 1vh;
+}
+
+.item-price,
+.item-end,
+.item-seller {
+    list-style-type: none;
+    font-size: 1vw;
+    color: #352f44;
+}
+
+.lienPseudo{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1em;
+}
+
+.profilBloc{
+	color: #352f44;
+    font-family: 'Fjalla One', sans-serif;
+    text-align: center;
+}
+
+.profilBloc li {
+	width: 30%;
+	margin-left: 35%;
+	border: 1px solid #5c5470;
+	border-radius: 4px;
+	margin-bottom: 1%;
+	padding: 1vw;
 }

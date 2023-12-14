@@ -13,38 +13,38 @@ import java.util.List;
 
 import fr.eni.lesencheres.bll.ArticleManager;
 import fr.eni.lesencheres.bll.CategorieManager;
-import fr.eni.lesencheres.bll.UtilisateurManager;
 import fr.eni.lesencheres.bo.Article;
 import fr.eni.lesencheres.bo.Categorie;
 import fr.eni.lesencheres.dal.DAOFactory;
 
 /**
- * Servlet implementation class AccueilServlet
+ * Servlet implementation class DeconnexionServlet
  */
-public class AccueilServlet extends HttpServlet {
+public class DeconnexionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private CategorieManager categorieManager = new CategorieManager(DAOFactory.getCategorieDAO());
 	private ArticleManager articleManager = new ArticleManager(DAOFactory.getArticleDAO());
-	
 
-    
+
+
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
 		List<Categorie> categories = categorieManager.getAllCategories();
 		if (categories != null) {
-		    request.setAttribute("categories", categories);
+			request.setAttribute("categories", categories);
 		}
 		List<Article> articles = articleManager.getAllArticle();
 		if (articles != null) {
-		    request.setAttribute("articles", articles);
+			request.setAttribute("articles", articles);}
+			HttpSession session = request.getSession();
+			// Retirer le pseudo de la session
+			session.removeAttribute("pseudo");
+			session.setAttribute("utilisateurConnecte", false);
+			// Invalider la session
+			session.invalidate();
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/accueil.jsp");
+			dispatcher.forward(request, response);
 		}
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/accueil.jsp");
-		dispatcher.forward(request, response);
-
-	}
-
-	
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

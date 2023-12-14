@@ -10,18 +10,27 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
+import fr.eni.lesencheres.bll.UtilisateurManager;
 import fr.eni.lesencheres.bo.Utilisateur;
-import fr.eni.lesencheres.messages.ErrorManager;
-import fr.eni.lesencheres.messages.ErrorMessage;
+import fr.eni.lesencheres.dal.DAOFactory;
 
-public class QuiSommesNous extends HttpServlet {
+/**
+ * Servlet implementation class informationServlet
+ */
+public class informationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	UtilisateurManager utilisateurManager = new UtilisateurManager(DAOFactory.getUtilisateurDAO());
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/QuiSommesNous.jsp");
+	    HttpSession session = request.getSession();
+	    String pseudo = (String) session.getAttribute("pseudo");
+	    Utilisateur utilisateur = utilisateurManager.getUtilisateurByPseudo(pseudo);
+	    request.setAttribute("pseudoEnCours", utilisateur);
+	    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/information.jsp");
 		dispatcher.forward(request, response);
 	}
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 	}
 
 }

@@ -16,36 +16,43 @@
     <title>Modification</title>
 </head>
 <body>
-    <header>
-        <h1>ENI-Encheres</h1>
-        <nav>
-            <a href="<%=request.getContextPath()%>/accueil">Accueil</a>
-            <a href="">Qui sommes nous ?</a>
-        </nav>
-    </header>
+   <header>
+		<h1>ENI-Encheres</h1>
+		<nav>
+		
+
+            <c:if test="${not empty sessionScope.utilisateurConnecte}">
+				<a href="<%=request.getContextPath()%>/accueil" class="nav-link">Accueil</a>
+                <a href="<%=request.getContextPath()%>/info" class="nav-link">Mes informations</a>
+                <a href="<%=request.getContextPath()%>/quisommesnous">Qui sommes nous ?</a>
+                <a href="<%=request.getContextPath()%>/deconnexion" class="nav-link">Déconnexion</a>
+			</c:if>
+		</nav>
+	</header>
     <main>
-   		<h2>Pseudo : </h2>
         <form action="<%=request.getContextPath()%>/modification" method ="post">
             
             <div class = "blocForm">
-                
-                <label for="nom">Nom (*) : </label><input type="text" id="nom" name="nom"/>
-                <label for="prenom">Prénom (*) :</label><input type="text" id="prenom" name="prenom">
-                <label for="email">Email (*) :</label><input type="text" id="email" name="email">
+                <label for="pseudo">Pseudo : </label><input type="text" id="pseudo" name="pseudo"/>
+                <label for="nom">Nom : </label><input type="text" id="nom" name="nom"/>
+                <label for="prenom">Prénom :</label><input type="text" id="prenom" name="prenom">
+                <label for="email">Email :</label><input type="text" id="email" name="email">
                 <label for="telephone">Téléphone : </label><input type="text" id="telephone" name="telephone">
-                <label for="rue">Rue (*) :</label><input type="text" id="rue" name="rue">
-                <label for="codePostal">Code Postal (*) :</label><input type="text" id="codePostal" name="codePostal">
-                <label for="ville">Ville (*) :</label><input type="text" id="ville" name="ville">
+                <label for="rue">Rue :</label><input type="text" id="rue" name="rue">
+                <label for="codePostal">Code Postal :</label><input type="text" id="codePostal" name="codePostal">
+                <label for="ville">Ville :</label><input type="text" id="ville" name="ville">
+                <label for="password">Mot de passe (*) :</label><input type="password" id="password" name="password">
+                <label for="confirmation">Confirmation du nouveau mot de passe (*) :</label><input type="password" id="confirmation" name="confirmation">
                
    
           </div>
           <% if (request.getAttribute("erreur") != null) { %>
             <div class="error-message"><%= request.getAttribute("erreur") %></div>
         <% } %>
-          <button type="submit" >Créer</button>
+          <button type="submit" >Enregistrer</button>
           
         </form>
-        <button><a href="<%=request.getContextPath()%>/connexion">Annuler</button>
+        <button><a href="<%=request.getContextPath()%>/info">Annuler</button>
     </main>
 </body>
 </html>

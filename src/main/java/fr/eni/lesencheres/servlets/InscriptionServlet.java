@@ -6,6 +6,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 
 import fr.eni.lesencheres.bll.UtilisateurManager;
@@ -74,6 +76,7 @@ public class InscriptionServlet extends HttpServlet {
 			    } else {
 			    	nouveauUtilisateur.setPassword(password);
 			        utilisateurManager.createUtilisateur(nouveauUtilisateur);
+			        HttpSession session = request.getSession();
 			        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/accueil.jsp");
 					dispatcher.forward(request, response);
 			    }

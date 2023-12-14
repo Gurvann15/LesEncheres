@@ -7,6 +7,8 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -33,27 +35,26 @@ public class ConnexionServlet extends HttpServlet {
 		String identifiant = request.getParameter("identifiant");
 		String password = request.getParameter("password");
 		try {
-			// Récupérer l'utilisateur par son identifiant (ici, supposons que l'identifiant est le pseudo)
 			Utilisateur utilisateur = utilisateurManager.getUtilisateurByPseudo(identifiant);
 
-			// Valider le mot de passe
 			if (utilisateur != null && utilisateur.getPassword().equals(password)) {
+				// Création d'un cookie sur le pseudo, qu'on va garder un mois
 				Cookie pseudoCookie = new Cookie("pseudo", utilisateur.getPseudo());
-                // Cookie gardé pendant 1 semaine
                 pseudoCookie.setMaxAge(30 * 24 * 60 * 60);
-                // Ajouter le cookie à la réponse
                 response.addCookie(pseudoCookie);
-				// Authentification réussie, rediriger vers une page de succès
+                // Gestion de la session
+                HttpSession session = request.getSession();
+                session.setAttribute("pseudo", identifiant);
+                session.setAttribute("utilisateurConnecte", true);
+                // Requête réussie
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/accueil");
 				dispatcher.forward(request, response);
 			} else {
-				// Authentification échouée, rediriger vers la page de connexion avec un message d'erreur
 				request.setAttribute("erreur", ErrorMessage.getMessage("connexionError"));
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/connexion.jsp");
 				dispatcher.forward(request, response);
 			}
 		} catch (ErrorManager e) {
-			// Gérer les erreurs, rediriger vers la page de connexion avec un message d'erreur
 			request.setAttribute("erreur", e.getMessage());
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/connexion.jsp");
 			dispatcher.forward(request, response);
